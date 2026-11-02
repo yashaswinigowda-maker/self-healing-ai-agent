@@ -1,0 +1,162 @@
+[
+  {
+    "id": "7b87acb9-cc23-4f4e-b1a3-ece0fc6f428b",
+    "memory_type": "SUCCESS",
+    "task_description": "Test recording unit task",
+    "tool_name": "web_search_mock",
+    "error_category": "TRANSIENT_NETWORK",
+    "error_message": "Connection timed out",
+    "diagnosis": "Gateway latency",
+    "recovery_strategy": "RETRY",
+    "recovery_action": {
+      "retry_delay_seconds": 1
+    },
+    "outcome": "SUCCESS",
+    "confidence_score": 0.91,
+    "frequency": 3,
+    "tags": [
+      "web_search_mock",
+      "TRANSIENT_NETWORK",
+      "success"
+    ],
+    "created_at": "2026-11-02T13:44:30.180418+00:00"
+  },
+  {
+    "id": "01b43669-7565-4570-b431-721b2e0acf27",
+    "memory_type": "SUCCESS",
+    "task_description": "Fetch status from remote service gateway.",
+    "tool_name": "http_client_mock",
+    "error_category": "TRANSIENT_NETWORK",
+    "error_message": "HTTP 503 Service Unavailable: Remote endpoint 'failed_service' is unreachable.",
+    "diagnosis": "Resource or endpoint was not found for http_client_mock.",
+    "recovery_strategy": "REPLAN",
+    "recovery_action": {
+      "action_type": "substitute_subtasks",
+      "replan_notes": "Substitute with alternative mock data fetcher and synthesizer.",
+      "retry_delay_seconds": 0
+    },
+    "outcome": "SUCCESS",
+    "confidence_score": 0.88,
+    "frequency": 3,
+    "tags": [
+      "http_client_mock",
+      "TRANSIENT_NETWORK",
+      "success"
+    ],
+    "created_at": "2026-11-02T13:44:30.102846+00:00"
+  },
+  {
+    "id": "48934fd7-5d8f-44db-8ce6-2fb11afc92ef",
+    "memory_type": "SUCCESS",
+    "task_description": "Calculate quarterly return on investment with arithmetic divisor.",
+    "tool_name": "calculator",
+    "error_category": "RESOLVED_FAULT",
+    "error_message": "Recovered from transient/parameter fault",
+    "diagnosis": "Self-healing recovery successful",
+    "recovery_strategy": "ARGUMENT_OR_RETRY_ADAPTATION",
+    "recovery_action": {
+      "expression": "1000 / 1"
+    },
+    "outcome": "SUCCESS",
+    "confidence_score": 0.83,
+    "frequency": 4,
+    "tags": [
+      "calculator",
+      "RESOLVED_FAULT",
+      "success"
+    ],
+    "created_at": "2026-11-02T13:44:29.916953+00:00"
+  },
+  {
+    "id": "5b0f0bef-3b72-44ad-8a9d-2a43e04c6da8",
+    "memory_type": "SUCCESS",
+    "task_description": "Calculate quarterly profit and ROI",
+    "tool_name": "calculator",
+    "error_category": "PARAMETER_ERROR",
+    "error_message": "Division by zero in mathematical expression.",
+    "diagnosis": "Formula attempted division by zero when calculating growth metric.",
+    "recovery_strategy": "CHANGE_ARGUMENTS",
+    "recovery_action": {
+      "action_type": "sanitize_parameters",
+      "corrected_arguments": {
+        "expression": "1000 / 1"
+      }
+    },
+    "outcome": "SUCCESS",
+    "confidence_score": 0.95,
+    "frequency": 3,
+    "tags": [
+      "math",
+      "division_by_zero",
+      "sanitize"
+    ],
+    "created_at": "2026-11-02T13:32:46.459020+00:00"
+  },
+  {
+    "id": "e02f7f35-1b40-49fc-89b2-0e242f063b86",
+    "memory_type": "FAILURE",
+    "task_description": "Calculate quarterly profit and ROI",
+    "tool_name": "calculator",
+    "error_category": "PARAMETER_ERROR",
+    "error_message": "Division by zero in mathematical expression.",
+    "diagnosis": "Naive retry without modifying zero divisor.",
+    "recovery_strategy": "RETRY",
+    "recovery_action": {
+      "action_type": "immediate_retry"
+    },
+    "outcome": "FAILURE",
+    "confidence_score": 0.1,
+    "frequency": 2,
+    "tags": [
+      "math",
+      "failed_retry",
+      "loop"
+    ],
+    "created_at": "2026-11-02T13:32:46.459065+00:00"
+  },
+  {
+    "id": "b4ac6b19-a30c-493e-8ac5-9a81b4a85eaf",
+    "memory_type": "SUCCESS",
+    "task_description": "Fetch live weather report for Seattle",
+    "tool_name": "http_client_mock",
+    "error_category": "TRANSIENT_NETWORK",
+    "error_message": "HTTP Connection Timeout after 15000ms",
+    "diagnosis": "Transient latency spike on remote gateway.",
+    "recovery_strategy": "RETRY",
+    "recovery_action": {
+      "action_type": "exponential_backoff_retry",
+      "retry_delay_seconds": 1
+    },
+    "outcome": "SUCCESS",
+    "confidence_score": 0.92,
+    "frequency": 4,
+    "tags": [
+      "network",
+      "timeout",
+      "retry_success"
+    ],
+    "created_at": "2026-11-02T13:32:46.459078+00:00"
+  },
+  {
+    "id": "18cf6ae3-1af9-434f-84b5-abfd349dc81f",
+    "memory_type": "SUCCESS",
+    "task_description": "Query unavailable legacy endpoint",
+    "tool_name": "http_client_mock",
+    "error_category": "RESOURCE_UNAVAILABLE",
+    "error_message": "HTTP 503 Service Unavailable: Remote endpoint is unreachable.",
+    "diagnosis": "Remote service permanently decommissioned or unreachable.",
+    "recovery_strategy": "REPLAN",
+    "recovery_action": {
+      "action_type": "substitute_subtasks",
+      "replan_notes": "Switch to web search mock tool"
+    },
+    "outcome": "SUCCESS",
+    "confidence_score": 0.89,
+    "frequency": 2,
+    "tags": [
+      "replan",
+      "fallback_tool"
+    ],
+    "created_at": "2026-11-02T13:32:46.459088+00:00"
+  }
+]
